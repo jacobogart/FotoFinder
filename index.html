@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PhotoFinder</title>
+  <link rel="stylesheet" type="text/css" href="normalize.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,800" rel="stylesheet">
+</head>
+<body>
+  <header>
+      <h1>Foto<img src="images/foto-finder-logo.svg" alt="FotoFinder Camera Logo" class="logo-icon">Finder</h1>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search">
+        <button class="search-btn"><i class="fas fa-search"></i></button>
+    </div>   
+  </header>
+  <main>
+    <section class="upload">
+      <form class="input-wrapper user-flow">
+        <label class="upload-label" for="title">Title</label>
+        <input class="upload-input title-input" type="text" name="title">
+        <label class="upload-label" for="caption">Caption</label>
+        <input class="upload-input caption-input" type="text" name="caption">
+        <input class="input-file" type="file" name="file" id="file">
+        <label class="file-btn upload-input" for="file">Choose File</label>
+        <div class="btm-btn-holder">
+          <button class="btm-btn">View Favorites</button>
+          <button class="btm-btn album-btn">Add to Album</button>
+        </div>
+      </form>
+    </section>
+    <section class="storage">
+      <template>
+        <section class="photo" data-id="">
+          <p class="title"></p>
+          <img class="photo-img" src="">
+          <p class="caption"></p>
+          <div class="photo-btm">
+            <img class="delete-btn passive" src="images/delete.svg">
+            <img class="favorite-btn passive" src="images/favorite.svg">
+           </div>
+        </section>
+      </template>
+    </section>
+  </main>
+</body>
+<script type="text/javascript" src="photo.js"></script>
+<script type="text/javascript" src="main.js"></script>
+</html>
