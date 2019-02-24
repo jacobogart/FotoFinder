@@ -18,6 +18,10 @@ button:focus {
   outline: none;
 }
 
+.hidden {
+  display: none;
+}
+
 /* header */
 
 header {
@@ -147,22 +151,29 @@ main {
   display: flex;
   justify-content: space-between;
 }
+
 /*STORAGE*/
 
 .storage {
   background-color: #C2B2B4;
   display: flex;
+  flex-direction: row-reverse;
   flex-wrap: wrap;
-  height: 1000px;
-  justify-content: flex-start;
+  height: 100%;
+  justify-content: flex-end;
   padding: 20px 50px;
+}
+
+.storage h1 {
+  margin: 30px auto;
 }
 
 .photo {
   background-color: #FFFFFF;
   border: 2px #938284 solid;
-  height: 350px;
+  height: 500px;
   margin: 20px;
+  min-width: 295px;
   position: relative;
   width: 22%
 }
@@ -173,8 +184,14 @@ p {
   margin: 10px 5px;
 }
 
+.photo-holder {
+  height: 300px;
+}
+
 .photo-img {
+  height: 100%;
   width: 100%;
+  object-fit: contain;
 }
 
 .photo-btm {
@@ -189,22 +206,36 @@ p {
 .favorite-btn {
   height: 30px;
   margin: 10px;
+  z-index: 3;
 }
 
 .delete-btn {
-  float: left;
+  position: absolute;
+  left: 0;
 }
+
+#delete-active {
+  z-index: 2;
+  position: absolute;
+  left: 0;
+}
+
+#favorite-active {
+  z-index: 2;
+  position: absolute;
+  right: 0;
+}
+
 
 .favorite-btn {
-  float: right;
-}
-
-.active-btn {
   position: absolute;
-  z-index: 1;
+  right: 0;
 }
 
-.passive {
-  display: hidden;
-  z-index: 2
+.passive:hover, {
+  opacity: 0;
+}
+
+.disabled {
+  background-color: #C2B2B4;
 }
