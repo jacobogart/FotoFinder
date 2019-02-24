@@ -164,6 +164,10 @@ main {
   padding: 20px 50px;
 }
 
+.storage h1 {
+  margin: 30px auto;
+}
+
 .photo {
   background-color: #FFFFFF;
   border: 2px #938284 solid;
@@ -232,3 +236,6 @@ p {
   opacity: 0;
 }
 
+.disabled {
+  background-color: #C2B2B4;
+}

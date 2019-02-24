@@ -23,11 +23,11 @@
         <input class="upload-input title-input" type="text" name="title">
         <label class="upload-label" for="caption">Caption</label>
         <input class="upload-input caption-input" type="text" name="caption">
-        <input class="input-file" type="file" name="file" id="file">
+        <input class="input-file" type="file" accept="image/*" name="file" id="file">
         <label class="file-btn upload-input" for="file">Choose File</label>
         <div class="btm-btn-holder">
-          <button class="btm-btn">View Favorites</button>
-          <button class="btm-btn album-btn">Add to Album</button>
+          <button class="btm-btn view-favorites">View <span class="favorite-counter">0</span> Favorites</button>
+          <button class="btm-btn album-btn disabled" disabled=true>Add to Album</button>
         </div>
       </form>
     </section>

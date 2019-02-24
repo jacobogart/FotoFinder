@@ -8,7 +8,7 @@ class Photo {
   }
 
   static saveToStorage(e, targetPhoto) {
-    localStorage.clear()
+    localStorage.clear();
     localStorage.setItem('photos', JSON.stringify(imagesArr));
   }
 
@@ -19,7 +19,6 @@ class Photo {
   }
 
   static updatePhoto(e, targetPhoto) {
-    console.log(e);
     if (e.target.className === "title") {
       targetPhoto.title = e.target.innerText;
     } else if (e.target.className === "caption") {
