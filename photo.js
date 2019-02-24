@@ -2,20 +2,35 @@ class Photo {
   constructor(id, title, caption, file) {
     this.id = Date.now();
     this.title = title;
-    this. caption = caption;
+    this.caption = caption;
     this.file = file;
     this.favorite = false;
   }
 
-  saveToStorage() {
+  static saveToStorage(e, targetPhoto) {
+    localStorage.clear()
     localStorage.setItem('photos', JSON.stringify(imagesArr));
   }
 
-  deleteFromStorage() {
-
+  static deleteFromStorage() {
+    var i = imagesArr.findIndex(i => i.id === targetPhoto.id);
+    imagesArr.splice(i, 1);
+    this.saveToStorage();
   }
 
-  updatePhoto() {
+  static updatePhoto(e, targetPhoto) {
+    console.log(e);
+    if (e.target.className === "title") {
+      targetPhoto.title = e.target.innerText;
+    } else if (e.target.className === "caption") {
+      targetPhoto.caption = e.target.innerText;
+    }
+    this.saveToStorage();
+  }
 
+  static favoritePhoto(targetPhoto) {
+    targetPhoto.favorite = !targetPhoto.favorite;
+    console.log(imagesArr);
+    this.saveToStorage();
   }
 }

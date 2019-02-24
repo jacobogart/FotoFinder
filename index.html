@@ -33,13 +33,18 @@
     </section>
     <section class="storage">
       <template>
-        <section class="photo" data-id="">
-          <p class="title"></p>
-          <img class="photo-img" src="">
-          <p class="caption"></p>
+        <section class="photo">
+          <p class="title" contenteditable="true"></p>
+          <div class="photo-holder">
+            <label class="gallery-file"><img class="photo-img" src=""></label>
+<!--             <input class="input-file" type="file" name="file">
+ -->          </div>
+          <p class="caption" contenteditable="true"></p>
           <div class="photo-btm">
-            <img class="delete-btn passive" src="images/delete.svg">
-            <img class="favorite-btn passive" src="images/favorite.svg">
+            <img class="delete-btn passive" id="delete" src="images/delete.svg">
+            <img class="delete-btn" id="delete-active" src="images/delete-active.svg">
+            <img class="favorite-btn passive" id="favorite" src="images/favorite.svg">
+            <img class="favorite-btn" id="favorite-active" src="images/favorite-active.svg">
            </div>
         </section>
       </template>
