@@ -29,7 +29,6 @@ class Photo {
 
   static favoritePhoto(targetPhoto) {
     targetPhoto.favorite = !targetPhoto.favorite;
-    console.log(imagesArr);
     this.saveToStorage();
   }
 }
