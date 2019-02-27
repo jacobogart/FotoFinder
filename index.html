@@ -20,12 +20,12 @@
     <section class="upload">
       <form class="input-wrapper user-flow">
         <label class="upload-label" for="title">Title</label>
-        <input class="upload-input title-input" type="text" name="title">
+        <input class="upload-input title-input" type="text" id="title">
         <div>
           <label class="upload-label" for="caption">Caption</label>
           <span id="character-count">0</span>
         </div>
-        <input class="upload-input caption-input" type="text" name="caption">
+        <input class="upload-input caption-input" type="text" id="caption">
         <input class="input-file" type="file" accept="image/*" name="file" id="file">
         <label class="file-btn upload-input" for="file">Choose File</label>
         <div class="btm-btn-holder">
@@ -44,10 +44,10 @@
           </div>
           <p class="caption" contenteditable="true"></p>
           <div class="photo-btm">
-            <img class="delete-btn passive" id="delete-passive" src="images/delete.svg">
-            <img class="delete-btn" id="delete-active" src="images/delete-active.svg">
-            <img class="favorite-btn passive" id="favorite-passive" src="images/favorite.svg">
-            <img class="favorite-btn" id="favorite-active" src="images/favorite-active.svg">
+            <img class="delete-btn passive" id="delete-passive" role="button" src="images/delete.svg">
+            <img class="delete-btn" id="delete-active" role="button" src="images/delete-active.svg">
+            <img class="favorite-btn passive" id="favorite-passive" role="button" src="images/favorite.svg">
+            <img class="favorite-btn" id="favorite-active" role="button" src="images/favorite-active.svg">
            </div>
         </section>
       </template>
