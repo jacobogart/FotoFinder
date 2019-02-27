@@ -148,7 +148,7 @@ function viewFaveAll() {
 }
 
 function clickHandler(e) {
-  if (e.target.id === "delete-active") {
+  if (e.target.id === "delete-passive") {
     deleteCard(e);
   } else if (e.target.id === "favorite-passive") {
     favoriteCard(e);
@@ -176,14 +176,12 @@ function updateImageJr(e) {
 function favoriteCard(e) {
   photoTargeter(e);
   e.target.classList.add('hidden');
-  // e.target.nextElementSibling.classList.remove('hidden');
   Photo.favoritePhoto(targetPhoto);
   favoriteCounter()
 }
 
 function unfavoriteCard(e) {
   photoTargeter(e);
-  // e.target.classList.add('hidden');
   e.target.previousElementSibling.classList.remove('hidden');
   Photo.favoritePhoto(targetPhoto);
   favoriteCounter()
