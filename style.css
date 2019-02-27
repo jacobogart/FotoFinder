@@ -16,8 +16,12 @@ input:focus {
 
 button:focus {
   outline: none;
-/*  cursor: pointer;
-*/}
+}
+
+button:hover,
+label:hover {
+  cursor: pointer;
+}
 
 .hidden {
   display: none;
@@ -122,11 +126,11 @@ main {
 }
 
 .input-file {
-  width: 0.1px;
   height: 0.1px;
   opacity: 0;
   overflow: hidden;
   position: absolute;
+  width: 0.1px;
   z-index: -1;
 }
 
@@ -204,16 +208,16 @@ p {
 
 .photo-img {
   height: 100%;
-  width: 100%;
   object-fit: contain;
+  width: 100%;
 }
 
 .photo-btm {
   background-color: #5B4447;
   bottom: 0;
   height: 50px;
-  width: 100%;
   position: absolute;
+  width: 100%;
 }
 
 .delete-btn,
@@ -224,20 +228,20 @@ p {
 }
 
 .delete-btn {
-  position: absolute;
   left: 0;
+  position: absolute;
 }
 
 #delete-active {
-  z-index: 2;
-  position: absolute;
   left: 0;
+  position: absolute;
+  z-index: 2;
 }
 
 #favorite-active {
-  z-index: 2;
   position: absolute;
   right: 0;
+  z-index: 2;
 }
 
 
@@ -248,8 +252,15 @@ p {
 
 #delete-passive:hover,
 #favorite-passive:hover {
+  cursor: pointer;
   opacity: 0;
 }
+
+#delete-active:hover,
+#favorite-active:hover {
+  cursor: pointer;
+}
+
 
 .btm-btn:hover,
 .file-btn:hover {
@@ -267,9 +278,9 @@ p {
 
 
 .show-holder {
-  width:100%;
   display: flex;
   justify-content: center;
+  width:100%;
 }
 
 .show-btn {
@@ -319,8 +330,8 @@ p {
   }
 
   .show-btn {
-  width: 70%;
-}
+    width: 70%;
+  }
 }
 
 @media (max-width: 575px) {
@@ -367,9 +378,3 @@ p {
     height: 40px;
   }
 }
-
-
-
-
-
-
