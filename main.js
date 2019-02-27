@@ -3,6 +3,7 @@ var searchInput = document.querySelector('#search-input');
 var searchBtn = document.querySelector('.search-btn');
 var title = document.querySelector('.title-input');
 var caption = document.querySelector('.caption-input');
+var characterCount = document.querySelector('#character-count');
 var photoFile = document.querySelector('.input-file');
 var favoriteCounterEl = document.querySelector('.favorite-counter');
 var galleryFile = document.querySelector('.gallery-file');
@@ -19,11 +20,12 @@ searchBtn.addEventListener('click', searchPhotos);
 searchInput.addEventListener('keyup', searchPhotos);
 create.addEventListener('click', loadImg);
 uploadSection.addEventListener('change', buttenEnabler);
+caption.addEventListener('input', characterCounter);
 viewFavoritesBtn.addEventListener('click', viewFavorites);
 photoGallery.addEventListener('keydown', saveOnReturn);
 photoGallery.addEventListener('focusout', saveCard);
 photoGallery.addEventListener('click', clickHandler);
-photoFile.addEventListener('change', updateImage);
+photoGallery.addEventListener('change', updateImage);
 
 function appendPhotos() {
   if (imagesArr.length === 0) {
@@ -45,10 +47,50 @@ function appendPhotosJr() {
   favoriteCounter()
 }
 
+function addPhoto(e) {
+  e.preventDefault();
+  var newPhoto = new Photo(Date.now(), title.value, caption.value, e.target.result);
+  imagesArr.push(newPhoto)
+  Photo.saveToStorage(imagesArr)
+  createPhoto(newPhoto);
+  title.value = '';
+  caption.value = '';
+}
+
+function createPhoto(newPhoto) {
+  var temp = document.getElementsByTagName("template")[0];
+  temp.content.querySelector('.photo').setAttribute("data-id", newPhoto.id);
+  temp.content.querySelector('.photo').setAttribute("data-fave", newPhoto.favorite);
+  temp.content.querySelector('.title').innerText = newPhoto.title;
+  temp.content.querySelector('img').src = newPhoto.file;
+  temp.content.querySelector('label').setAttribute("for", newPhoto.id);
+  temp.content.querySelector('input').id = newPhoto.id;
+  temp.content.querySelector('.caption').innerText = newPhoto.caption;
+  var clone = temp.content.cloneNode(true);
+  photoGallery.prepend(clone);
+}
+
+function characterCounter() {
+  characterCount.innerHTML = caption.value.length;
+  if(caption.value.length < 70) {
+    create.disabled = false;
+    create.classList.remove('disabled');
+    characterCount.style.color = "#FFFFFF";
+    buttenEnabler();
+  } else {
+    create.disabled = true;
+    create.classList.add('disabled');
+    characterCount.style.color = 'red';
+  }
+}
+
 function buttenEnabler() {
   if (title.value && caption.value && photoFile.files[0]) {
     create.disabled = false;
     create.classList.remove('disabled');
+  } else {
+    create.disabled = true;
+    create.classList.add('disabled');
   }
 }
 
@@ -82,54 +124,66 @@ function viewFavorites(e) {
   e.preventDefault();
   clearDOM(0);
   if (viewFavoritesBtn.innerText.includes('Favorite')) {
-   for (var i = 0; i < imagesArr.length; i++) {
-      if (imagesArr[i].favorite === true) {
-      createPhoto(imagesArr[i]);  
-      }
-    }  
-    viewFavoritesBtn.innerText = 'View All';
+    viewFaveFave()
   } else if (viewFavoritesBtn.innerText.includes('All')) {
-    appendPhotosJr();
-    clearDOM(10)
-    viewFavoritesBtn.innerHTML = `View <span class="favorite-counter">0</span> Favorites`;
-    favoriteCounter();
+    viewFaveAll()
   }
   checkFavorite();
 }
 
+function viewFaveFave() {
+  for (var i = 0; i < imagesArr.length; i++) {
+      if (imagesArr[i].favorite === true) {
+      createPhoto(imagesArr[i]);  
+      }
+    }  
+  viewFavoritesBtn.innerText = 'View All';
+}
+
+function viewFaveAll() {
+  appendPhotosJr();
+  clearDOM(10)
+  viewFavoritesBtn.innerHTML = `View <span class="favorite-counter">0</span> Favorites`;
+  favoriteCounter();
+}
+
 function clickHandler(e) {
-  if (e.target.id === "delete") {
+  if (e.target.id === "delete-active") {
     deleteCard(e);
-  } else if (e.target.id === "favorite") {
+  } else if (e.target.id === "favorite-passive") {
     favoriteCard(e);
   } else if (e.target.id === "favorite-active") {
     unfavoriteCard(e);
   } else if (e.target.id === "show-btn") {
     showMoreLess();
-  } else {
-    console.log(e.target);
   }
 }
 
-
 function updateImage(e) {
-  if (photoFile.files[0]) {
-    reader.readAsDataURL(photoFile.files[0]); 
-    reader.onload = test
+  if (e.target.files[0]) {
+    photoTargeter(e);
+    reader.readAsDataURL(e.target.files[0]); 
+    reader.onload = updateImageJr;
   }
+}
+
+function updateImageJr(e) {
+  var newPhotoURL = e.target.result;
+  Photo.updatePhoto(e, targetPhoto, newPhotoURL);
+  appendPhotos();
 }
 
 function favoriteCard(e) {
   photoTargeter(e);
   e.target.classList.add('hidden');
-  e.target.nextElementSibling.classList.remove('hidden');
+  // e.target.nextElementSibling.classList.remove('hidden');
   Photo.favoritePhoto(targetPhoto);
   favoriteCounter()
 }
 
 function unfavoriteCard(e) {
   photoTargeter(e);
-  e.target.classList.add('hidden');
+  // e.target.classList.add('hidden');
   e.target.previousElementSibling.classList.remove('hidden');
   Photo.favoritePhoto(targetPhoto);
   favoriteCounter()
@@ -163,30 +217,7 @@ function clearDOM(n) {
 function loadImg(e) {
   e.preventDefault();
   reader.readAsDataURL(photoFile.files[0]); 
-  reader.onload = addPhoto
-}
-
-function addPhoto(e) {
-  e.preventDefault();
-  var newPhoto = new Photo(Date.now(), title.value, caption.value, e.target.result);
-  imagesArr.push(newPhoto)
-  Photo.saveToStorage(imagesArr)
-  createPhoto(newPhoto);
-  title.value = '';
-  caption.value = '';
-}
-
-function createPhoto(newPhoto) {
-  var temp = document.getElementsByTagName("template")[0];
-  temp.content.querySelector('.photo').setAttribute("data-id", newPhoto.id);
-  temp.content.querySelector('.photo').setAttribute("data-fave", newPhoto.favorite);
-  temp.content.querySelector('.title').innerText = newPhoto.title;
-  temp.content.querySelector('img').src = newPhoto.file;
-  temp.content.querySelector('label').setAttribute("for", newPhoto.id);
-  // temp.content.querySelector('input').id = newPhoto.id;
-  temp.content.querySelector('.caption').innerText = newPhoto.caption;
-  var clone = temp.content.cloneNode(true);
-  photoGallery.prepend(clone);
+  reader.onload = addPhoto;
 }
 
 function checkFavorite() {
