@@ -16,7 +16,8 @@ input:focus {
 
 button:focus {
   outline: none;
-}
+/*  cursor: pointer;
+*/}
 
 .hidden {
   display: none;
@@ -129,6 +130,17 @@ main {
   z-index: -1;
 }
 
+#character-count {
+  color: #FFFFFF;
+  float: right;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+#character-count::after {
+  content: '/70'
+}
+
 .file-btn,
 .btm-btn {
   background-color: #5B4444;
@@ -157,10 +169,11 @@ main {
 .storage {
   background-color: #C2B2B4;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   flex-wrap: wrap;
   height: 100%;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  min-height: 500px;
   padding: 20px 50px;
 }
 
@@ -182,6 +195,7 @@ p {
   color: #3E2A35;
   font-size: 20px;
   margin: 10px 5px;
+  padding: 5px;
 }
 
 .photo-holder {
@@ -232,10 +246,130 @@ p {
   right: 0;
 }
 
-.passive:hover, {
+#delete-passive:hover,
+#favorite-passive:hover {
   opacity: 0;
+}
+
+.btm-btn:hover,
+.file-btn:hover {
+  background-color: #C2B2B4; 
+}
+
+.show-btn:hover {
+  background-color: #3E2A35;
+}
+
+.search-btn:hover {
+  background-color: #5B4444;
+  border-color: #5B4444;
+}
+
+
+.show-holder {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+.show-btn {
+  max-width: 700px;
 }
 
 .disabled {
   background-color: #C2B2B4;
 }
+
+@media (max-width: 900px) {
+  header {
+    display: block;
+    padding: 30px;
+  }
+
+  h1 {
+    margin: 20px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .search-bar {
+    margin: 10px auto;
+    max-width: 470px;
+    width: 90%;
+  }
+
+  .upload-input,
+  .btm-btn {
+    height: 50px;
+    margin: 10px 0;
+  }
+
+  .btm-btn {
+    width: 47%;
+  }
+
+  .file-btn {
+    padding: 15px 0;
+  }
+}
+
+@media (max-width: 769px) {
+  .storage {
+    justify-content: center;
+  }
+
+  .show-btn {
+  width: 70%;
+}
+}
+
+@media (max-width: 575px) {
+  h1 {
+    font-size: 36px;
+  }
+
+  .logo-icon {
+    height: 34px;
+  }
+
+  .btm-btn,
+  .file-btn {
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .album-btn {
+    padding-left: 27px;
+    padding-right: 27px;
+  }
+
+  .upload {
+    padding-top: 0;
+  }
+
+  header {
+    padding-top: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  .logo-icon {
+    height: 22px;
+  }
+  
+  .title-input,
+  .caption-input {
+    height: 40px;
+  }
+}
+
+
+
+
+
+

@@ -18,18 +18,19 @@ class Photo {
     this.saveToStorage();
   }
 
-  static updatePhoto(e, targetPhoto) {
+  static updatePhoto(e, targetPhoto, newPhotoURL) {
     if (e.target.className === "title") {
       targetPhoto.title = e.target.innerText;
     } else if (e.target.className === "caption") {
       targetPhoto.caption = e.target.innerText;
-    }
+    } else if (e.type == "load"){
+      targetPhoto.file = newPhotoURL;
+    } 
     this.saveToStorage();
   }
 
   static favoritePhoto(targetPhoto) {
     targetPhoto.favorite = !targetPhoto.favorite;
-    console.log(imagesArr);
     this.saveToStorage();
   }
 }
