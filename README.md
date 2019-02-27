@@ -1,4 +1,4 @@
-# FotoFiner
+# FotoFinder
 FotoFinder can be used to locally store photos. Photos are given a title and caption, and can be favorited, deleted, or changed.
 
 ## Motivation:
